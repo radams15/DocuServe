@@ -1,0 +1,13 @@
+package uk.co.therhys.docuserve;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DocuServeApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(DocuServeApplication.class, args);
+    }
+
+}
