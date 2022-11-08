@@ -6,19 +6,19 @@ pipeline {
     }
     
     stages{
-        stage('Test'){
+        /*stage('Test'){
             steps{
                 sh 'mvn test'
 
                 archiveArtifacts artifacts: 'target/JMD-*.jar'
             }
-        }
+        }*/
 
         stage('Build'){
             steps{
                 sh 'mvn package -Dmaven.test.skip=true'
                 
-                archiveArtifacts artifacts: 'target/JMD-*.jar'
+                archiveArtifacts artifacts: 'target/DocuServe-*.jar'
             }
         }
     }
