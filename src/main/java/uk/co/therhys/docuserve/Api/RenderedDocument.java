@@ -1,4 +1,4 @@
-package uk.co.therhys.docuserve;
+package uk.co.therhys.docuserve.Api;
 
 import lombok.Data;
 
