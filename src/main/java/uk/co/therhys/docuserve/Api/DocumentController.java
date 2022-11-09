@@ -52,6 +52,7 @@ public class DocumentController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+    @CrossOrigin
     @PostMapping("/document")
     public ResponseEntity<Document> postDocument(@RequestBody @NonNull Document document){
         System.out.println(document);

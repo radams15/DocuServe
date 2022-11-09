@@ -12,13 +12,12 @@
 
         <table>
             <th>ID</th>
-            <th>Path</th>
+            <th>Link</th>
 
             <?php foreach (get_docs() as $doc): ?>
             <tr>
-                <td><?=$doc->id?></td>
                 <td><?=$doc->path?></td>
-                <td><a href="/edit.php?id=<?=$doc->id?>">Go</a></td>
+                <td><a href="/edit.php?path=<?=$doc->path?>">Go</a></td>
             </tr>
             <?php endforeach ?>
         </table>
