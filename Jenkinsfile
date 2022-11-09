@@ -13,6 +13,14 @@ pipeline {
                 archiveArtifacts artifacts: 'target/JMD-*.jar'
             }
         }*/
+        
+        stage('Frontend'){
+            steps{
+                sh 'tar czf frontend.tar.gz Frontend'
+                
+                archiveArtifacts artifacts: 'frontend.tar.gz'
+            }
+        }
 
         stage('Build'){
             steps{
