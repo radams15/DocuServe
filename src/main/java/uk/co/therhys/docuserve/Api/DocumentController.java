@@ -9,6 +9,8 @@ import uk.co.therhys.docuserve.Db.DocumentManager;
 import uk.co.therhys.docuserve.Db.DocumentRepository;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class DocumentController {
@@ -17,6 +19,19 @@ public class DocumentController {
 
     @Autowired
     private DocumentManager documentManager;
+
+    @GetMapping("/documents")
+    public ResponseEntity<List<Document>> documents(){
+        ArrayList<Document> out = new ArrayList<>();
+
+        documentRepository.findAll()
+                .forEach(
+                    i ->
+                        out.add(new Document(i.getId(), "", i.getPath()))
+        );
+
+        return new ResponseEntity<>(out, HttpStatus.OK);
+    }
 
     @GetMapping("/document")
     public ResponseEntity<Document> document(@RequestParam(value="id") Integer id){
