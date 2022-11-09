@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 @Component
 public class DocumentManager {
@@ -15,16 +16,14 @@ public class DocumentManager {
     public DocumentManager(@Value("${docuserve.root}") String base){
         this.base = base;
 
-        System.out.println("================== Base: " + base + " ================== ");
+        System.out.println("================== Base path: " + base + " ================== ");
     }
 
     private Path getFile(String file){
-        Path path = Paths.get(base, file).toAbsolutePath();
-
-        return path;
+        return Paths.get(base, file).toAbsolutePath();
     }
 
-    private boolean exists(String filePath){
+    public boolean exists(String filePath){
         return getFile(filePath).toFile().exists();
     }
 
@@ -38,5 +37,11 @@ public class DocumentManager {
         Path path = getFile(filePath);
 
         return Files.readString(path);
+    }
+
+    public Stream<Path> getAll() throws IOException {
+        Path basePath = Paths.get(base);
+
+        return Files.find(basePath, 999, (p, bfa) -> bfa.isRegularFile()).map(basePath::relativize);
     }
 }
